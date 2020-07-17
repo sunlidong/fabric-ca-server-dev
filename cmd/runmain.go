@@ -62,6 +62,7 @@ func RunMain(args []string) error {
 
 // NewCommand returns new ServerCmd ready for running
 func NewCommand(name string, blockingStart bool) *ServerCmd {
+	golog.Println("----- main 100000001003")
 	s := &ServerCmd{
 		name:          name,
 		blockingStart: blockingStart,
@@ -80,6 +81,7 @@ func (s *ServerCmd) Execute() error {
 // It intializes the cobra root and sub commands and
 // registers command flgs with viper
 func (s *ServerCmd) init() {
+	golog.Println("----- main 100000001004")
 	// root command
 	rootCmd := &cobra.Command{
 		Use:   cmdName,
