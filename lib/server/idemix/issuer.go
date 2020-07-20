@@ -15,16 +15,17 @@ import (
 	"sync"
 	"time"
 
-	"github.com/cloudflare/cfssl/log"
-	proto "github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-amcl/amcl"
-	fp256bn "github.com/hyperledger/fabric-amcl/amcl/FP256BN"
 	"caserver/api"
 	"caserver/lib/common"
 	"caserver/lib/server/db"
 	dbutil "caserver/lib/server/db/util"
 	"caserver/lib/server/user"
 	"caserver/util"
+
+	"github.com/cloudflare/cfssl/log"
+	proto "github.com/golang/protobuf/proto"
+	"github.com/hyperledger/fabric-amcl/amcl"
+	fp256bn "github.com/hyperledger/fabric-amcl/amcl/FP256BN"
 	"github.com/hyperledger/fabric/bccsp"
 	"github.com/hyperledger/fabric/idemix"
 	"github.com/pkg/errors"
@@ -115,6 +116,7 @@ func (i *issuer) Init(renew bool, db db.FabricCADB, levels *dbutil.Levels) error
 	if err != nil {
 		return err
 	}
+	log.Info("----- main 100000001017- initKeyMaterial")
 	err = i.initKeyMaterial(renew)
 	if err != nil {
 		return err

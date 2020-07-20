@@ -11,10 +11,11 @@ import (
 	"crypto/ecdsa"
 	"fmt"
 
-	"github.com/cloudflare/cfssl/log"
-	fp256bn "github.com/hyperledger/fabric-amcl/amcl/FP256BN"
 	"caserver/lib/server/db"
 	"caserver/util"
+
+	"github.com/cloudflare/cfssl/log"
+	fp256bn "github.com/hyperledger/fabric-amcl/amcl/FP256BN"
 	"github.com/hyperledger/fabric/idemix"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
@@ -76,7 +77,7 @@ func NewRevocationAuthority(issuer MyIssuer, level int) (RevocationAuthority, er
 		db:     issuer.DB(),
 	}
 	var err error
-
+	log.Info("----- main 100000001018- initKeyMaterial")
 	err = ra.initKeyMaterial(false)
 	if err != nil {
 		return nil, err

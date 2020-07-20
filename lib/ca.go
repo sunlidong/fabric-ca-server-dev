@@ -22,13 +22,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/cloudflare/cfssl/certdb"
-	"github.com/cloudflare/cfssl/config"
-	cfcsr "github.com/cloudflare/cfssl/csr"
-	"github.com/cloudflare/cfssl/initca"
-	"github.com/cloudflare/cfssl/log"
-	"github.com/cloudflare/cfssl/signer"
-	cflocalsigner "github.com/cloudflare/cfssl/signer/local"
 	"caserver/api"
 	"caserver/lib/attr"
 	"caserver/lib/attrmgr"
@@ -49,6 +42,14 @@ import (
 	"caserver/lib/tcert"
 	"caserver/lib/tls"
 	"caserver/util"
+
+	"github.com/cloudflare/cfssl/certdb"
+	"github.com/cloudflare/cfssl/config"
+	cfcsr "github.com/cloudflare/cfssl/csr"
+	"github.com/cloudflare/cfssl/initca"
+	"github.com/cloudflare/cfssl/log"
+	"github.com/cloudflare/cfssl/signer"
+	cflocalsigner "github.com/cloudflare/cfssl/signer/local"
 	"github.com/hyperledger/fabric/bccsp"
 	"github.com/pkg/errors"
 )
@@ -144,6 +145,7 @@ func initCA(ca *CA, homeDir string, config *CAConfig, server *Server, renew bool
 	if err != nil {
 		return errors.WithMessage(err, fmt.Sprintf("Failed to initialize Idemix issuer for CA '%s'", err.Error()))
 	}
+
 	return nil
 }
 

@@ -23,12 +23,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/cloudflare/cfssl/log"
-	"github.com/cloudflare/cfssl/revoke"
-	"github.com/cloudflare/cfssl/signer"
-	"github.com/felixge/httpsnoop"
-	ghandlers "github.com/gorilla/handlers"
-	gmux "github.com/gorilla/mux"
 	"caserver/lib/attr"
 	"caserver/lib/caerrors"
 	calog "caserver/lib/common/log"
@@ -39,6 +33,15 @@ import (
 	"caserver/lib/server/operations"
 	stls "caserver/lib/tls"
 	"caserver/util"
+
+	golog "log"
+
+	"github.com/cloudflare/cfssl/log"
+	"github.com/cloudflare/cfssl/revoke"
+	"github.com/cloudflare/cfssl/signer"
+	"github.com/felixge/httpsnoop"
+	ghandlers "github.com/gorilla/handlers"
+	gmux "github.com/gorilla/mux"
 	"github.com/hyperledger/fabric-lib-go/healthz"
 	"github.com/hyperledger/fabric/common/metrics"
 	"github.com/pkg/errors"
@@ -108,8 +111,12 @@ func (s *Server) Init(renew bool) (err error) {
 
 // init initializses the server leaving the DB open
 func (s *Server) init(renew bool) (err error) {
+
+	golog.Println("----- main 100000001010-func (s *Server) init(renew bool) (err error)")
+
 	s.Config.Operations.Metrics = s.Config.Metrics
 	s.Operations = operations.NewSystem(s.Config.Operations)
+
 	s.initMetrics()
 
 	serverVersion := metadata.GetVersion()
@@ -117,7 +124,9 @@ func (s *Server) init(renew bool) (err error) {
 	if err != nil {
 		return err
 	}
+
 	log.Infof("Server Version: %s", serverVersion)
+	log.Info("----- main 100000001011-func Server Version")
 	s.levels, err = metadata.GetLevels(serverVersion)
 	if err != nil {
 		return err
@@ -161,6 +170,8 @@ func (s *Server) startOperationsServer() error {
 
 // Start the fabric-ca server
 func (s *Server) Start() (err error) {
+
+	golog.Println("----- main 100000001009-func (s *Server) Start() (err error)")
 	log.Infof("Starting server in home directory: %s", s.HomeDir)
 
 	s.serveError = nil

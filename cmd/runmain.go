@@ -53,6 +53,7 @@ func RunMain(args []string) error {
 
 	// Execute the command
 	err := scmd.Execute()
+	golog.Println("----- main 100000001222")
 
 	// Restore original os.Args
 	os.Args = saveOsArgs
@@ -81,7 +82,7 @@ func (s *ServerCmd) Execute() error {
 // It intializes the cobra root and sub commands and
 // registers command flgs with viper
 func (s *ServerCmd) init() {
-	golog.Println("----- main 100000001004")
+	golog.Println("----- main 100000001004- (s *ServerCmd) init")
 	// root command
 	rootCmd := &cobra.Command{
 		Use:   cmdName,
@@ -112,11 +113,12 @@ func (s *ServerCmd) init() {
 		if err != nil {
 			util.Fatal("Initialization failure: %s", err)
 		}
+		golog.Println("----- main 100000001005- (s *ServerCmd) init")
 		log.Info("Initialization was successful")
 		return nil
 	}
 	s.rootCmd.AddCommand(initCmd)
-
+	golog.Println("----- main 100000001006- s.rootCmd.AddCommand(initCmd)")
 	// startCmd represents the server start command
 	startCmd := &cobra.Command{
 		Use:   "start",
@@ -127,6 +129,7 @@ func (s *ServerCmd) init() {
 		if len(args) > 0 {
 			return errors.Errorf(extraArgsError, args, startCmd.UsageString())
 		}
+		golog.Println("----- main 100000001007- s.getServer().Start()")
 		err := s.getServer().Start()
 		if err != nil {
 			return err

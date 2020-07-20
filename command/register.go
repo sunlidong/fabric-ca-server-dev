@@ -26,6 +26,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+
+/
 func (c *ClientCmd) newRegisterCommand() *cobra.Command {
 	registerCmd := &cobra.Command{
 		Use:   "register",
