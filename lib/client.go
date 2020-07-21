@@ -20,11 +20,6 @@ import (
 	"strconv"
 	"strings"
 
-	cfsslapi "github.com/cloudflare/cfssl/api"
-	"github.com/cloudflare/cfssl/csr"
-	"github.com/cloudflare/cfssl/log"
-	proto "github.com/golang/protobuf/proto"
-	fp256bn "github.com/hyperledger/fabric-amcl/amcl/FP256BN"
 	"caserver/api"
 	"caserver/lib/client/credential"
 	idemixcred "caserver/lib/client/credential/idemix"
@@ -33,6 +28,12 @@ import (
 	"caserver/lib/streamer"
 	"caserver/lib/tls"
 	"caserver/util"
+
+	cfsslapi "github.com/cloudflare/cfssl/api"
+	"github.com/cloudflare/cfssl/csr"
+	"github.com/cloudflare/cfssl/log"
+	proto "github.com/golang/protobuf/proto"
+	fp256bn "github.com/hyperledger/fabric-amcl/amcl/FP256BN"
 	"github.com/hyperledger/fabric/bccsp"
 	"github.com/hyperledger/fabric/idemix"
 	"github.com/mitchellh/mapstructure"
@@ -80,7 +81,11 @@ type EnrollmentResponse struct {
 
 // Init initializes the client
 func (c *Client) Init() error {
+
+	// 表示客户端对象是否已经初始化
 	if !c.initialized {
+
+		// peizhi
 		cfg := c.Config
 		log.Debugf("Initializing client with config: %+v", cfg)
 		if cfg.MSPDir == "" {
@@ -97,7 +102,8 @@ func (c *Client) Init() error {
 		if err != nil {
 			return errors.Wrap(err, "Failed to create keystore directory")
 		}
-		c.keyFile = path.Join(keyDir, "key.pem")
+		fmt.Println("-------------------------------------key12424")
+		c.keyFile = path.Join(keyDir, "key12424.pem")
 
 		// Cert directory and file
 		certDir := path.Join(mspDir, "signcerts")
@@ -138,6 +144,8 @@ func (c *Client) Init() error {
 
 		// Successfully initialized the client
 		c.initialized = true
+	} else {
+		fmt.Println("----------------------- Successfully initialized the client")
 	}
 	return nil
 }

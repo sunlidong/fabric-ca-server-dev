@@ -44,5 +44,8 @@ func cainfoHandler(ctx *serverRequestContextImpl) (interface{}, error) {
 		return nil, err
 	}
 	resp.Version = metadata.GetVersion()
+
+	// todo
+	resp.CAName = "ldsun server "
 	return resp, nil
 }

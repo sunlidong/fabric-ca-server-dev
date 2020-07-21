@@ -5,7 +5,9 @@ go 1.14
 require (
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/cloudflare/cfssl v0.0.0-20180223231731-4e2dcbde5004
+	github.com/cosiner/argv v0.1.0 // indirect
 	github.com/felixge/httpsnoop v1.0.1
+	github.com/go-delve/delve v1.4.1 // indirect
 	github.com/go-kit/kit v0.9.0
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/protobuf v1.3.2
@@ -21,12 +23,15 @@ require (
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/kisielk/sqlstruct v0.0.0-20150923205031-648daed35d49
 	github.com/lib/pq v1.7.0
+	github.com/mattn/go-colorable v0.1.7 // indirect
+	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/mattn/go-sqlite3 v1.14.0
 	github.com/miekg/pkcs11 v1.0.3 // indirect
 	github.com/mitchellh/mapstructure v1.3.2
 	github.com/onsi/ginkgo v1.6.0
 	github.com/onsi/gomega v1.4.2
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
+	github.com/peterh/liner v1.2.0 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/profile v1.5.0
 	github.com/prometheus/client_golang v0.9.4
@@ -36,8 +41,10 @@ require (
 	github.com/spf13/viper v1.7.0
 	github.com/stretchr/testify v1.6.1
 	github.com/sykesm/zap-logfmt v0.0.3 // indirect
+	go.starlark.net v0.0.0-20200707032745-474f21a9602d // indirect
+	golang.org/x/arch v0.0.0-20200511175325-f7c78586839d // indirect
 	golang.org/x/crypto v0.0.0-20200709230013-948cd5f35899
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/ldap.v2 v2.5.1
-	gopkg.in/yaml.v2 v2.2.4
+	gopkg.in/yaml.v2 v2.3.0
 )

@@ -10,12 +10,13 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/cloudflare/cfssl/log"
 	"caserver/api"
 	"caserver/lib/attr"
 	"caserver/lib/caerrors"
 	"caserver/lib/server/user"
 	"caserver/util"
+
+	"github.com/cloudflare/cfssl/log"
 	"github.com/pkg/errors"
 )
 
@@ -31,10 +32,17 @@ func newRegisterEndpoint(s *Server) *serverEndpoint {
 
 // Handle a register request
 func registerHandler(ctx *serverRequestContextImpl) (interface{}, error) {
+	// TODO
+
+	fmt.Println("---34934-用户注册")
 	ca, err := ctx.GetCA()
 	if err != nil {
 		return nil, err
 	}
+	//  todo
+	fmt.Println("---38491-ca=>", ca)
+
+	// ca 服务器身份初始化 完成
 	return register(ctx, ca)
 }
 

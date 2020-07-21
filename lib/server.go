@@ -547,6 +547,7 @@ func (s *Server) GetCA(name string) (*CA, error) {
 }
 
 // Register all endpoint handlers
+// 所有的请求先到这里
 func (s *Server) registerHandlers() {
 	s.mux.Use(s.cors, s.middleware)
 	s.registerHandler(newCAInfoEndpoint(s))

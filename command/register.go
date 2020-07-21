@@ -20,14 +20,14 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/cloudflare/cfssl/log"
 	"caserver/lib"
+
+	"github.com/cloudflare/cfssl/log"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
 
-
-/
+// server  服务端 请求 注册  用户
 func (c *ClientCmd) newRegisterCommand() *cobra.Command {
 	registerCmd := &cobra.Command{
 		Use:   "register",
@@ -35,11 +35,14 @@ func (c *ClientCmd) newRegisterCommand() *cobra.Command {
 		Long:  "Register an identity with Fabric CA server",
 		// PreRunE block for this command will check to make sure enrollment
 		// information exists before running the command
+
+		// 检查参数，确保后续执行成功
 		PreRunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) > 0 {
 				return errors.Errorf(extraArgsError, args, cmd.UsageString())
 			}
 
+			//将检查此命令的PreRunE块，以确保注册成功
 			err := c.ConfigInit()
 			if err != nil {
 				return err
@@ -62,6 +65,7 @@ func (c *ClientCmd) newRegisterCommand() *cobra.Command {
 }
 
 // The client register main logic
+//  runRegister
 func (c *ClientCmd) runRegister() error {
 	log.Debug("Entered runRegister")
 
@@ -70,10 +74,14 @@ func (c *ClientCmd) runRegister() error {
 		Config:  c.clientCfg,
 	}
 
+	//
 	id, err := client.LoadMyIdentity()
 	if err != nil {
 		return err
 	}
+	// TO
+
+	fmt.Println("---- 49834-func (c *ClientCmd) runRegister() error {")
 
 	c.clientCfg.ID.CAName = c.clientCfg.CAName
 	resp, err := id.Register(&c.clientCfg.ID)

@@ -16,11 +16,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/cloudflare/cfssl/config"
-	"github.com/cloudflare/cfssl/log"
-	"github.com/cloudflare/cfssl/revoke"
-	"github.com/cloudflare/cfssl/signer"
-	gmux "github.com/gorilla/mux"
 	"caserver/api"
 	"caserver/lib/attr"
 	"caserver/lib/attrmgr"
@@ -29,6 +24,12 @@ import (
 	"caserver/lib/server/idemix"
 	"caserver/lib/server/user"
 	"caserver/util"
+
+	"github.com/cloudflare/cfssl/config"
+	"github.com/cloudflare/cfssl/log"
+	"github.com/cloudflare/cfssl/revoke"
+	"github.com/cloudflare/cfssl/signer"
+	gmux "github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 )
@@ -142,6 +143,7 @@ func (ctx *serverRequestContextImpl) BasicAuthentication() (string, error) {
 // in the authorization header.
 // Returns the enrollment ID or error.
 func (ctx *serverRequestContextImpl) TokenAuthentication() (string, error) {
+
 	r := ctx.req
 	// Get the authorization header
 	authHdr := r.Header.Get("authorization")
@@ -255,6 +257,7 @@ func (ctx *serverRequestContextImpl) GetCA() (*CA, error) {
 			return nil, nil
 		}
 	}
+
 	return ctx.ca, nil
 }
 
@@ -266,11 +269,17 @@ func (ctx *serverRequestContextImpl) getCA() (*CA, error) {
 		if err != nil {
 			return nil, err
 		}
+		fmt.Println("---43034=>", name)
 		// Get the CA by its name
 		ctx.ca, err = ctx.endpoint.Server.GetCA(name)
+
 		if err != nil {
 			return nil, err
 		}
+		fmt.Println("---43035-HomeDir=>", ctx.ca.HomeDir)
+		fmt.Println("---43035-Config=>", ctx.ca.Config)
+		fmt.Println("---43035-ConfigFilePath=>", ctx.ca.ConfigFilePath)
+
 	}
 	return ctx.ca, nil
 }
